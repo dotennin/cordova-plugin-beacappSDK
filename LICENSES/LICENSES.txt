@@ -1,0 +1,17 @@
+BeacappSDKforiOSでは、Version2 of AWS SDK for iOSが必要となります。
+Version2 of AWS SDK for iOS では以下のライセンスが必要となります。
+・https://github.com/aws/aws-sdk-ios/blob/master/LICENSE
+・https://github.com/aws/aws-sdk-ios/blob/master/LICENSE.AMAZON
+・https://github.com/aws/aws-sdk-ios/blob/master/LICENSE.APACHE
+
+
+BeacappSDKforiOSでは、FMDBが必要となります。
+
+FMDB Copyright (c) 2008-2014 Flying Meat Inc. https://github.com/ccgus/fmdb/blob/master/LICENSE.txt (https://github.com/ccgus/fmdb/blob/master/LICENSE.txt)
+
+
+BeacappSDKforAndroidでは、Version2 of AWS SDK for Androidが必要となります。
+Version2 of AWS SDK for Android では以下のライセンスが必要となります。
+・https://github.com/aws/aws-sdk-android/blob/master/LICENSE.txt
+・https://github.com/aws/aws-sdk-android/blob/master/LICENSE.APACHE.txt
+・https://github.com/aws/aws-sdk-android/blob/master/LICENSE.AMAZON.txt
