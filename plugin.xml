@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    id="jp.co.jmas.BeacappSDK"
+    version="0.0.1">
+    
+    <name>BeacappSDK</name>
+    <description>BeacappSDKPlugin Description</description>
+    <author>JMASystems Corporation</author>
+    <license>Apache 2.0 License</license>
+    <engines>
+        <engine name="cordova" version=">=3.5.0" />
+    </engines>
+    <js-module src="www/beacappSDK.js" name="beacappSDK">
+        <clobbers target="beacappSDK" />
+    </js-module>
+    
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="beacappSDK">
+                <param name="ios-package" value="beacappSDK"/>
+            </feature>
+        </config-file>
+        <config-file target="*-Info.plist" parent="NSLocationAlwaysUsageDescription">
+            <string>User Location</string>
+        </config-file>
+        <header-file src="src/ios/beacappSDK.h" target-dir="src/ios" />
+        <source-file src="src/ios/beacappSDK.m" target-dir="src/ios" />
+        <header-file src="src/ios/BeacappSDKforCordova.h" target-dir="src/ios" />
+        <source-file src="src/ios/BeacappSDKforCordova.m" target-dir="src/ios" />
+        <header-file src="src/ios/JBCPCore.h" target-dir="src/ios" />
+        <header-file src="src/ios/JBCPError.h" target-dir="src/ios" />
+        <header-file src="src/ios/JBCPManager.h" target-dir="src/ios" />
+        <header-file src="src/ios/JBCPManagerDelegate.h" target-dir="src/ios" />
+        <source-file src="src/ios/libAWSCore.a" framework="true" target-dir="src/ios" />
+        <source-file src="src/ios/libAWSDynamoDB.a" framework="true" target-dir="src/ios" />
+        <source-file src="src/ios/libAWSKinesis.a" framework="true" target-dir="src/ios" />
+        <source-file src="src/ios/libAWSS3.a" framework="true" target-dir="src/ios" />
+        <source-file src="src/ios/libBeacappSDKforiOS.a" framework="true" target-dir="src/ios" />
+        <source-file src="src/ios/libFMDB.a" framework="true" target-dir="src/ios" />
+        <source-file src="src/ios/libReachability.a" framework="true" target-dir="src/ios" />
+        <framework src="libz.tbd" />
+        <framework src="libsqlite3.tbd" />
+    </platform>
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="beacappSDK">
+                <param name="android-package" value="jp.co.jmas.BeacappSDK"/>
+            </feature>
+        </config-file>
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.INTERNET" />
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+            <uses-permission android:name="android.permission.BLUETOOTH" />
+            <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+            <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+        </config-file>
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <service
+                android:name="com.beacapp.service.JBCPScanService"
+                android:exported="false"
+                android:process=":bleservice">
+                <intent-filter>
+                    <action android:name="com.beacapp.BLEServiceAIDL" />
+                    <action android:name="com.beacapp.BLEServiceCalbackAIDL" />
+                </intent-filter>
+            </service>
+        </config-file>
+        
+        
+        <source-file src="src/android/jp/co/jmas/BeacappSDK.java" target-dir="src/jp/co/jmas" />
+        <source-file src="src/android/libs/aws-android-sdk-core-2.2.14.jar" target-dir="libs" />
+        <source-file src="src/android/libs/aws-android-sdk-ddb-2.2.14.jar" target-dir="libs" />
+        <source-file src="src/android/libs/aws-android-sdk-ddb-mapper-2.2.14.jar" target-dir="libs" />
+        <source-file src="src/android/libs/aws-android-sdk-kinesis-2.2.14.jar" target-dir="libs" />
+        <source-file src="src/android/libs/libBeacappSDKforAndroid.jar" target-dir="libs" />
+    </platform>
+    
+</plugin>
