@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     id="jp.co.jmas.BeacappSDK"
-    version="0.0.1">
+    version="0.0.2">
     
     <name>BeacappSDK</name>
     <description>BeacappSDKPlugin Description</description>
@@ -34,10 +34,8 @@
         <source-file src="src/ios/libAWSCore.a" framework="true" target-dir="src/ios" />
         <source-file src="src/ios/libAWSDynamoDB.a" framework="true" target-dir="src/ios" />
         <source-file src="src/ios/libAWSKinesis.a" framework="true" target-dir="src/ios" />
-        <source-file src="src/ios/libAWSS3.a" framework="true" target-dir="src/ios" />
         <source-file src="src/ios/libBeacappSDKforiOS.a" framework="true" target-dir="src/ios" />
         <source-file src="src/ios/libFMDB.a" framework="true" target-dir="src/ios" />
-        <source-file src="src/ios/libReachability.a" framework="true" target-dir="src/ios" />
         <framework src="libz.tbd" />
         <framework src="libsqlite3.tbd" />
     </platform>

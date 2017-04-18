@@ -57,45 +57,75 @@ public class BeacappSDK extends CordovaPlugin {
             initializeContext = callbackContext;
             initialize(requestToken,secretKey);
 
-        } else if (action.equals(START_UPDATE_EVENTS)) {
+        } else if (action.equals(START_UPDATE_EVENTS)) {                
+            PluginResult result = null;
             if (jbcpManager!=null){
                 jbcpManager.startUpdateEvents();
+                result = new PluginResult(PluginResult.Status.OK, "success");
+            } else{
+                result = new PluginResult(PluginResult.Status.ERROR, "error");
             }
+            callbackContext.sendPluginResult(result);
 
         } else if (action.equals(START_SCAN)) {
+            PluginResult result = null;
             if (jbcpManager!=null){
-                jbcpManager.startScan();
+                try{
+                    jbcpManager.startScan();
+                    result = new PluginResult(PluginResult.Status.OK, "success");
+                } catch (JBCPException e) {
+                    result = new PluginResult(PluginResult.Status.ERROR, "error");
+                }
+            } else{
+                result = new PluginResult(PluginResult.Status.ERROR, "error");
             }
-
+            callbackContext.sendPluginResult(result);
 
         } else if (action.equals(STOP_SCAN)) {
+            PluginResult result = null;
             if (jbcpManager!=null){
-                jbcpManager.stopScan();
+                try{
+                    jbcpManager.stopScan();
+                    result = new PluginResult(PluginResult.Status.OK, "success");
+                } catch (JBCPException e) {
+                    result = new PluginResult(PluginResult.Status.ERROR, "error");
+                }
+            } else{
+                result = new PluginResult(PluginResult.Status.ERROR, "error");
             }
+            callbackContext.sendPluginResult(result);
+
         } else if (action.equals(GET_DEVICE_IDENTIFIER)) {
             if (jbcpManager!=null){
-                jbcpManager.stopScan();
-                String deviceIdentifier = jbcpManager.getDeviceIdentifier();
                 PluginResult result = null;
-                JSONObject obj = new JSONObject();
                 try {
+                    jbcpManager.stopScan();
+                    String deviceIdentifier = jbcpManager.getDeviceIdentifier();
+                    JSONObject obj = new JSONObject();
                     obj.put("callback", "success");
                     obj.put("deviceIdentifier", deviceIdentifier);
                     result = new PluginResult(PluginResult.Status.OK, obj);
-                } catch (JSONException e) {
+                } catch (Exception e) {
                     result = new PluginResult(PluginResult.Status.ERROR, "error");
-
                 }
-                fireEventsContext.sendPluginResult(result);
+                callbackContext.sendPluginResult(result);
             }
 
 
         } else if (action.equals(SET_ADDITIONAL_LOG)) {
+            PluginResult result = null;
             if (jbcpManager!=null){
                 String logValue = args.getString(0);
-                jbcpManager.setAdditonalLog(logValue);
+                try{
+                    jbcpManager.setAdditonalLog(logValue);
+                    result = new PluginResult(PluginResult.Status.OK, "success");
+                } catch (JBCPException e) {
+                    result = new PluginResult(PluginResult.Status.ERROR, "error");
+                }
+            } else{
+                result = new PluginResult(PluginResult.Status.ERROR, "error");
             }
-
+            callbackContext.sendPluginResult(result);
 
         } else if (action.equals(CUSTOM_LOG)) {
             if (jbcpManager!=null){
@@ -107,7 +137,7 @@ public class BeacappSDK extends CordovaPlugin {
                 } catch (Exception e) {
                     result = new PluginResult(PluginResult.Status.ERROR, e.getMessage());
                 }
-                fireEventsContext.sendPluginResult(result);
+                callbackContext.sendPluginResult(result);
 
             }
 
